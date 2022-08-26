@@ -1,0 +1,88 @@
+scales = 1 2 3 4 5 6 7 8 9
+percentages = 1 2 3 4 5 10 15 20 25 30 33.33 35 40 45 50 55 60 65 66.66 70 75 80 85 90 95 100
+
+overflow(behavior) 
+    overflow-x: behavior
+    overflow-y: behavior
+
+flex-direction(direction)
+    display: flex
+    flex-direction: direction
+    flex-wrap: nowrap
+
+grow(device = '')
+    medium = device ? device + '-' : device
+    for scale in scales
+        .flex.{medium}grow-{scale}
+            flex-grow: scale     
+
+shrink(device = '')
+    medium = device ? device + '-' : device
+    for scale in scales
+        .flex.{medium}shrink-{scale}
+            flex-shrink: scale
+        
+resize(device = '')
+    medium = device ? device + '-' : device
+    for scale in scales
+        .flex.{medium}resize-{scale}
+            flex-shrink: scale
+            flex-grow: scale
+
+init(device = '')
+    medium = device ? device + '-' : device
+    for percentage in percentages
+        .flex.{medium}init-{split('.', '' + percentage)[0]}
+            flex-basis: 1% * percentage
+
+flex-by-device(device = '')
+    medium = device ? device + '-' : device
+    .flex.{medium}row 
+        flex-direction(row)
+    .flex.{medium}column 
+        flex-direction(column)
+    .flex.{medium}wrap 
+        flex-wrap: wrap
+    grow(device)
+    shrink(device)
+    resize(device)
+    init(device)
+
+
+
+html, body
+    margin: 0
+    height: 100%
+body
+    margin: 0 auto
+    max-width: 1200px
+.flex
+    overflow(scroll)
+
+/*default*/
+
+flex-by-device()
+
+/*mobile*/
+@media screen and (orientation: landscape) and (max-height: 450px), (orientation: portrait) and (max-width: 450px)
+    body > :first-child:before
+        content: 'Mobile'
+    flex-by-device('mobile')
+
+/*tablet*/
+@media screen and (orientation: landscape) and (min-height: 450.001px) and (max-height: 850px), (orientation: portrait) and (min-width: 450.001px) and (max-width: 850px)
+    body > :first-child:before
+        content: 'Tablet'
+    flex-by-device('tablet')
+
+/*desktop*/
+@media screen and (orientation: landscape) and (min-height: 850.001px) and (max-height: 2000px), (orientation: portrait) and (min-width: 850.001px) and (max-width: 2000px)
+    body > :first-child:before
+        content: 'Desktop'
+    flex-by-device('desktop')
+
+/*UHD*/
+@media screen and (orientation: landscape) and (min-height: 2000.001px), (orientation: portrait) and (min-width: 2000.001px)
+    body > :first-child:before
+        content: 'UHD'
+    flex-by-device('uhd')
