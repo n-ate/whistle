@@ -194,7 +194,7 @@ body {
   flex-basis: 100%;
 }
 /*mobile*/
-@media screen and (orientation: landscape) and (max-height: 450px), (orientation: portrait) and (max-width: 450px) {
+@media screen and (orientation: landscape) and (max-height: 450px), screen and (orientation: portrait) and (max-width: 450px) {
   body > :first-child:before {
     content: 'Mobile';
   }
@@ -381,7 +381,7 @@ body {
   }
 }
 /*tablet*/
-@media screen and (orientation: landscape) and (min-height: 450.001px) and (max-height: 850px), (orientation: portrait) and (min-width: 450.001px) and (max-width: 850px) {
+@media screen and (orientation: landscape) and (min-height: 450.001px) and (max-height: 850px), screen and (orientation: portrait) and (min-width: 450.001px) and (max-width: 850px) {
   body > :first-child:before {
     content: 'Tablet';
   }
@@ -568,7 +568,7 @@ body {
   }
 }
 /*desktop*/
-@media screen and (orientation: landscape) and (min-height: 850.001px) and (max-height: 2000px), (orientation: portrait) and (min-width: 850.001px) and (max-width: 2000px) {
+@media screen and (orientation: landscape) and (min-height: 850.001px) and (max-height: 2000px), screen and (orientation: portrait) and (min-width: 850.001px) and (max-width: 2000px) {
   body > :first-child:before {
     content: 'Desktop';
   }
@@ -755,7 +755,7 @@ body {
   }
 }
 /*UHD*/
-@media screen and (orientation: landscape) and (min-height: 2000.001px), (orientation: portrait) and (min-width: 2000.001px) {
+@media screen and (orientation: landscape) and (min-height: 2000.001px), screen and (orientation: portrait) and (min-width: 2000.001px) {
   body > :first-child:before {
     content: 'UHD';
   }
