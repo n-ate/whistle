@@ -1,12 +1,13 @@
 import { Controller } from "../../Controller.js";
-import { HttpRoute } from "../../decorators/HttpRoute.decorator.js";
+import { MvcController } from "../../decorators/MvcController.decorator.js";
+import { MvcQuery } from "../../decorators/MvcQuery.decorator.js";
 
-@HttpRoute........
+@MvcController("/segment/")
 export class HomeController extends Controller {
     constructor() {
         super();
     }
 
-    //@HttpGet("")
-    public GetIndex() {}
+    @MvcQuery("/index")
+    GetIndex() {}
 }

@@ -12,5 +12,4 @@ export class Component {
         this._view = view;
         this._controller = controller;
     }
-    //public static CreateComponent(onchange: Function): PouchTemplate {
 }

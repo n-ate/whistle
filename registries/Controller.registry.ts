@@ -1,19 +1,19 @@
+import { Dictionary } from "../collections/Dictionary.js";
 import { Controller } from "../Controller.js";
-import { Route } from "../Route.js";
 
 export class ControllerRegistry {
-    // Register<TController extends Controller>(): ControllerRegistry {
-    //     type controllerType = keyof TController;
-    //     let controller = new TController();
-    //     debugger;
-    //     this._controllers.push(new Route<TController>(""));
-    //     return this;
-    // }
+    Log() {
+        this._controllers.KeyValuePairs.forEach((pair) => console.log(`Controller: ${pair.Key.constructor.name.padEnd(30)}, Route: ${pair.Value}`));
+    }
     Register(controller: Controller): ControllerRegistry {
-        //TODO: get HttpRoute and HttpGet decorators from controller
         debugger;
-        //this._controllers.push(new Route<TController>(""));
+        let metadata = controller.Metadata;
+        console.log(metadata);
+
+        //TODO: use metadata to build a routes collection with each route broken into url /segments/, when browser navigates use filter all routes on the first url segment for a match and then the second, third, etc.. until a single match is found. Error on no matches and console log on multiple matches, but use the first
+
+        // if (!this._controllers.ContainsKey(controller)) this._controllers.Add(controller, "");
         return this;
     }
-    private _controllers: Route[] = [];
+    private _controllers: Dictionary<Controller, string> = new Dictionary<Controller, string>();
 }
