@@ -1,6 +1,6 @@
-import { Model } from "./Model.js";
-import { View } from "./View.js";
-import { Controller } from "./Controller.js";
+import { Model } from "./Model";
+import { View } from "./View";
+import { Controller } from "./Controller";
 
 export class Component {
     private _model: Model;

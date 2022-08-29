@@ -1,5 +1,5 @@
-import { Controller } from "../Controller.js";
-import { Dictionary } from "../collections/Dictionary.js";
+import { Controller } from "../Controller";
+import { Dictionary } from "../collections/Dictionary";
 
 export class ControllerMetadata {
     private _controller: Controller;

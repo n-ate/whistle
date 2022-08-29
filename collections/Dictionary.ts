@@ -1,4 +1,4 @@
-import { KeyValuePair } from "./KeyValuePair.js";
+import { KeyValuePair } from "./KeyValuePair";
 
 export class Dictionary<TKey, TValue> {
     TryAdd(key: TKey, value: TValue): boolean {

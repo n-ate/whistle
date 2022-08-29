@@ -1,4 +1,4 @@
-import { ControllerMetadata } from "./metadata/Controller.metadata.js";
+import { ControllerMetadata } from "./metadata/Controller.metadata";
 
 export class Controller {
     constructor() {}

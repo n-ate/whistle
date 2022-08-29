@@ -1,4 +1,4 @@
-import { ControllerRegistry } from "./Controller.registry.js";
+import { ControllerRegistry } from "./Controller.registry";
 
 export class RouteRegistry {
     Controllers: ControllerRegistry = new ControllerRegistry();

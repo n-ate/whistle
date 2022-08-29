@@ -1,5 +1,6 @@
-import { Controller } from "../Controller.js";
-import { RouteSegment } from "./RouteSegment.js";
+import { Controller } from "../Controller";
+import { RouteSegment } from "./RouteSegment";
+import { StringExtension } from "../prototypes/StringExtension.interface";
 
 export class Route {
     private _controller: Controller;
@@ -24,13 +25,13 @@ export class Route {
     }
 
     private combineRouteTemplates(controllerTemplate: string, routeTemplate: string, otherTemplate: string): string {
-        let template = `${controllerTemplate.trimAll("/")}/${routeTemplate.trimAll("/")}/${otherTemplate.trimAll("/")}`;
+        let template = `${(controllerTemplate as String as StringExtension).trimAll("/")}/${(routeTemplate as String as StringExtension).trimAll("/")}/${(otherTemplate as String as StringExtension).trimAll("/")}`;
         let previousLength = -1;
         do {
             previousLength = template.length;
             template = template.replace("//", "/"); //remove repeated slashes
         } while (template.length !== previousLength);
-        return template.trimAll("/");
+        return (template as String as StringExtension).trimAll("/");
     }
 
     Matches(url: URL): boolean {

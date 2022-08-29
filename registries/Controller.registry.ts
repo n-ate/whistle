@@ -1,5 +1,5 @@
-import { Controller } from "../Controller.js";
-import { Route } from "../routing/Route.js";
+import { Controller } from "../Controller";
+import { Route } from "../routing/Route";
 
 export class ControllerRegistry {
     private _persistRoutes: Route[] = [];
