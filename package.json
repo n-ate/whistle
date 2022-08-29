@@ -1,3 +1,37 @@
 {
-    "scripts": {}
+    "scripts": {},
+    "name": "whistle-api",
+    "type": "module",
+    "version": "0.0.0",
+    "description": "Whistle API is a lightweight client-side MVC Framework.",
+    "main": "Whistle.ts",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/n-ate/whistle.git"
+    },
+    "keywords": [
+        "MVC",
+        "TypeScript",
+        "Javascript",
+        "Client-Side",
+        "Framework",
+        "SPA",
+        "Responsive",
+        "RAD"
+    ],
+    "author": "Nate",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/n-ate/whistle/issues"
+    },
+    "homepage": "https://github.com/n-ate/whistle#readme",
+    "files": [
+        "**/*.ts",
+        "**/*.styl",
+        "**/*.css",
+        "*.json"
+    ]
 }

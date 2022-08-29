@@ -1,8 +1,9 @@
 import { ControllerRegistry } from "./registries/Controller.registry.js";
-import { RouteRegistry } from "./registries/Route.registry.js";
+import { StringPrototype } from "./prototypes/String.prototype.js";
 
 export class Whistle {
-    static Routing: RouteRegistry = new RouteRegistry();
     static Controllers: ControllerRegistry = new ControllerRegistry();
-    constructor() {}
 }
+
+//register early global classes here//
+StringPrototype.Register();

@@ -33,7 +33,12 @@ export class Dictionary<TKey, TValue> {
         return match ?? null;
     }
     private _keyValuePairs: KeyValuePair<TKey, TValue>[] = [];
-    constructor() {}
+
+    constructor(dictionary: Dictionary<TKey, TValue> | null = null) {
+        if (dictionary) {
+            this._keyValuePairs = dictionary.KeyValuePairs.map((pair, i, pairs) => new KeyValuePair<TKey, TValue>(pair.Key, pair.Value));
+        }
+    }
     Add(key: TKey, value: TValue): void {
         if (this.ContainsKey(key)) throw "Argument Exception: key already exists: " + key;
         this._keyValuePairs.push(new KeyValuePair(key, value));

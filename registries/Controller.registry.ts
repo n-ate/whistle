@@ -1,19 +1,42 @@
-import { Dictionary } from "../collections/Dictionary.js";
 import { Controller } from "../Controller.js";
+import { Route } from "../routing/Route.js";
 
 export class ControllerRegistry {
-    Log() {
-        this._controllers.KeyValuePairs.forEach((pair) => console.log(`Controller: ${pair.Key.constructor.name.padEnd(30)}, Route: ${pair.Value}`));
+    private _persistRoutes: Route[] = [];
+    private _queryRoutes: Route[] = [];
+
+    LogRoutes() {
+        console.log("** Persist Routes **");
+        this._persistRoutes.forEach((r) => console.log(`Method: ${r.Controller.constructor.name.padStart(20)}.${r.MethodName.padEnd(20)} Route: ${r.RouteSegments.map((s) => s.Raw).join("/")}`));
+        console.log("** Query Routes **");
+        this._queryRoutes.forEach((r) => console.log(`Method: ${r.Controller.constructor.name.padStart(20)}.${r.MethodName.padEnd(20)} Route: ${r.RouteSegments.map((s) => s.Raw).join("/")}`));
     }
     Register(controller: Controller): ControllerRegistry {
-        debugger;
+        //NOTE: all decorators are called before this point, so all metadata should be available for the entire controller
         let metadata = controller.Metadata;
-        console.log(metadata);
+        let routeMethodNames = metadata.RouteMethods.Keys;
+        let persistMethodNames = metadata.PersistMethods.Keys.filter((persistName) => !routeMethodNames.some((routeName) => routeName === persistName));
+        let queryMethodNames = metadata.QueryMethods.Keys.filter((queryName) => !routeMethodNames.some((routeName) => routeName === queryName));
 
-        //TODO: use metadata to build a routes collection with each route broken into url /segments/, when browser navigates use filter all routes on the first url segment for a match and then the second, third, etc.. until a single match is found. Error on no matches and console log on multiple matches, but use the first
+        //persist//
+        let methodNames = routeMethodNames.concat(persistMethodNames);
+        for (let i = 0; i < methodNames.length; i++) {
+            let name = methodNames[i];
+            let routeName = metadata.RouteMethods.TryGet(name) ?? "";
+            let persistName = metadata.PersistMethods.TryGet(name) ?? "";
+            let route = new Route(metadata.Controller, metadata.ControllerTemplate, name, routeName, persistName);
+            this._persistRoutes.push(route);
+        }
 
-        // if (!this._controllers.ContainsKey(controller)) this._controllers.Add(controller, "");
+        //query//
+        methodNames = routeMethodNames.concat(queryMethodNames);
+        for (let i = 0; i < methodNames.length; i++) {
+            let name = methodNames[i];
+            let routeName = metadata.RouteMethods.TryGet(name) ?? "";
+            let queryName = metadata.QueryMethods.TryGet(name) ?? "";
+            let route = new Route(metadata.Controller, metadata.ControllerTemplate, name, routeName, queryName);
+            this._queryRoutes.push(route);
+        }
         return this;
     }
-    private _controllers: Dictionary<Controller, string> = new Dictionary<Controller, string>();
 }
